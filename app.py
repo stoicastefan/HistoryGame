@@ -15,16 +15,18 @@ class User(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     username = db.Column(db.String(50), nullable=False, unique=True)
     password = db.Column(db.String(255), nullable=False)
+    email = db.Column(db.String(50), nullable=False, unique=True)
     data_created = db.Column(db.DateTime, default=datetime.utcnow())
 
     def __repr__(self):
         return '<User %r>' % self.id
 
 
-@app.route('/sign_in', methods=['POST', 'GET'])
-def sign_in():
+@app.route('/sign_up', methods=['POST', 'GET'])
+def sign_up():
     if request.method == "POST":
         username = request.form['username']
+        email = request.form['email']
         password = request.form['password'].encode('utf-8')
         hashed_password = bcrypt.hashpw(password, bcrypt.gensalt())
         exists = db.session.query(
@@ -32,7 +34,7 @@ def sign_in():
         ).scalar()
 
         if not exists:
-            new_user = User(username=username, password=hashed_password)
+            new_user = User(username=username, password=hashed_password, email=email)
             try:
                 db.session.add(new_user)
                 db.session.commit()
@@ -40,7 +42,7 @@ def sign_in():
             except():
                 return "error creating user"
         return "username already used"
-    return render_template('sign_in.html')
+    return render_template('sign_up.html')
 
 
 @app.route('/login', methods=['POST', 'GET'])
