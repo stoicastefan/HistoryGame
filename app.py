@@ -1,6 +1,5 @@
 from datetime import datetime
 
-
 import bcrypt as bcrypt
 from flask import Flask, render_template, request, redirect
 from flask_sqlalchemy import SQLAlchemy
@@ -40,17 +39,28 @@ def sign_in():
                 return redirect('/')
             except():
                 return "error creating user"
-        else:
-            return "username already used"
+        return "username already used"
+    return render_template('sign_in.html')
 
-    else:
-        return render_template('sign_in.html')
+
+@app.route('/login', methods=['POST', 'GET'])
+def login():
+    if request.method == "POST":
+        username = request.form['username']
+        password = request.form['password'].encode('utf-8')
+        user_db_row = User.query.filter_by(username=username).first()
+
+        if user_db_row:
+            if bcrypt.checkpw(password, user_db_row.password):
+                return f"Login successful as {user_db_row.username}"
+            return "Wrong password"
+        return "username not in db"
+    return render_template('login.html')
 
 
 @app.route('/', methods=['POST', 'GET'])
 def log_in():
     return "home page"
-
 
 
 if __name__ == "__main__":
