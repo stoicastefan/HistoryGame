@@ -1,0 +1,13 @@
+{% block head %}
+<title>Sign Up</title>
+{% endblock %}
+
+{% block body %}
+<form action="/sign_up" method="POST">
+        <input type="text" name="username" id="username">
+        <input type="email" name="email" id="email">
+        <input type="password" name="password" id="password">
+        <input type="submit" value="Sign Up">
+</form>
+
+{% endblock %}
