@@ -1,13 +1,47 @@
 {% block head %}
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css" integrity="sha512-SzlrxWUlpfuzQ+pcUCosxcglQRNAq/DZjVsC0lE40xsADsfeQoEypE+enwcOiGjk/bSuGGKHEyjSoQ1zVisanQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+<link rel="stylesheet" href="{{url_for('static', filename='css/sign_up.css')}}">
+
 <title>Sign Up</title>
 {% endblock %}
 
 {% block body %}
-<form action="/sign_up" method="POST">
-        <input type="text" name="username" id="username">
-        <input type="email" name="email" id="email">
-        <input type="password" name="password" id="password">
-        <input type="submit" value="Sign Up">
-</form>
+<body>
+    <div class="img-div">
+        <img src="{{url_for('static', filename='images/sign_up.png')}}">
+    </div>
 
+    <div class="signup-form">
+        
+        <div class="logo-div">
+            <img src="{{url_for('static', filename='images/logo.png')}}" align="right">
+        </div>
+
+        <h1 class="title" >Welocome to Time Seekers</h1>
+        <form action="/" method="post">
+            <div class="form-group">
+                <label for="username">Username</label>
+                <input id="username" type="text" class="form-control" name="username" placeholder="Enter your Username here" required="required">
+                <i class="fa fa-user"></i>
+            </div>
+            <div class="form-group">
+                <label for="email">Email</label>
+                <input id="email" type="email" class="form-control" name="email" placeholder="Enter your Email here" required="required">
+                <i class="fa fa-envelope"></i>
+            </div>
+            <div class="form-group">
+                <label for="password">Password</label>
+                <input id="password" type="password" class="form-control" name="password" placeholder="Enter your Password here" required="required">
+                <i class="fa fa-lock"></i>
+            </div>
+            <div class="form-group">
+                <input type="submit" class="btn" value="Create Account" align="center">
+            </div>
+        </form>
+
+        <p>
+            Already have an account? <a href="/login" >Log in</a>
+        </p>
+    </div>
+</body>
 {% endblock %}
