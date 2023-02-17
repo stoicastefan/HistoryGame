@@ -65,7 +65,7 @@ def login():
     return render_template('login.html')
 
 
-@app.route('/guessing_game', methods=['POST', 'GET'])
+@app.route('/guessing_game')
 def guessing_game():
     openai_api = OpenaiApi()
     answers = openai_api.get_a_list_of_answers("Give me 4 major events from prehistory.", 1, 1000)

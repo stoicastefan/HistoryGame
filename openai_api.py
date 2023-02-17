@@ -1,5 +1,3 @@
-import random
-
 import openai
 
 
@@ -8,7 +6,7 @@ class OpenaiApi:
         pass
 
     def request_answer_openai(self, prompt, temperature, tokens):
-        openai.api_key = "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"
+        openai.api_key = "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"
         response = openai.Completion.create(
             engine="text-davinci-003",
             prompt=prompt,
