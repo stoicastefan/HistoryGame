@@ -1,8 +1,13 @@
-from datetime import datetime
+import random
+import time
 
-import bcrypt as bcrypt
+import bcrypt
+
+
+from datetime import datetime
 from flask import Flask, render_template, request, redirect
 from flask_sqlalchemy import SQLAlchemy
+from openai_api import OpenaiApi
 
 
 app = Flask(__name__)
@@ -60,9 +65,22 @@ def login():
     return render_template('login.html')
 
 
-@app.route('/', methods=['POST', 'GET'])
-def log_in():
-    return "home page"
+@app.route('/guessing_game', methods=['POST', 'GET'])
+def guessing_game():
+    openai_api = OpenaiApi()
+    answers = openai_api.get_a_list_of_answers("Give me 4 major events from prehistory.", 1, 1000)
+    correct_answer = random.choice(answers)
+    time.sleep(1)
+    hints = openai_api.get_a_list_of_answers(f"Give me 5 hints about {correct_answer}.", 1, 1000)
+
+    return render_template("guessing_game.html", answers=answers, correct_answer=correct_answer, hints=hints)
+
+
+@app.route('/submit_guess/<string:user_answer>/<string:correct_answer>/<int:hints>', methods=['POST', 'GET'])
+def submit_guess(user_answer, correct_answer, hints):
+    if user_answer == correct_answer:
+        return f"You won using {hints} hints!"
+    return "You lose"
 
 
 if __name__ == "__main__":

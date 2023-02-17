@@ -1,0 +1,56 @@
+{% extends 'base.html' %}
+{% block head %}
+<link rel="stylesheet" href="{{url_for('static', filename='css/guessing_game.css')}}">
+
+<title>Guessing Game</title>
+
+{% endblock %}
+
+{% block body %}
+<div id="hints">
+
+</div>
+<input type="button" class="btn" value="Another Hint" onclick="getAnotherHint();" align="center">
+<form>
+    <select name="answer_select" id="select_answer" multiple>
+    {% for answer in  answers%}
+        <option value="{{answer[3:].strip()}}" >{{answer[3:]}}</option>
+    {% endfor %}
+    </select>
+    <input type="button" class="btn" value="Submit Answer" onclick="submitAnswer();" align="center">
+</form>
+<p id="demo"></p>
+
+<script>
+
+var hints = [], index = 0;
+
+{% for hint in  hints%}
+    hints[index] = '{{hint}}';
+    index += 1;
+{% endfor %}
+
+index = 0
+
+document.getElementById("demo").innerHTML = '{{correct_answer[3:]}}'
+
+function getAnotherHint(){
+    const newHint = document.createElement("p");
+    const newContent = document.createTextNode(hints[index]);
+    const element = document.getElementById("hints");
+
+    newHint.appendChild(newContent);
+    element.appendChild(newHint);
+    index += 1;
+
+}
+
+function submitAnswer(){
+    var yourAnswer = document.getElementById("select_answer").value;
+    var correct_answer = '{{correct_answer[3:]}}'
+    window.location.assign("/submit_guess/" + yourAnswer + "/" + correct_answer + "/" + index)
+}
+</script>
+
+{% endblock %}
+
