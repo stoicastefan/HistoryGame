@@ -83,5 +83,10 @@ def submit_guess(user_answer, correct_answer, hints):
     return "You lose"
 
 
+@app.route('/pick_period')
+def pick_period():
+    return render_template('pick_period.html')
+
+
 if __name__ == "__main__":
     app.run(debug=True)
