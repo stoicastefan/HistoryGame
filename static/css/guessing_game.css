@@ -2,13 +2,22 @@ p{
     width: 100%;
 }
 body{
-    display:block;
+    background-color: gray;
+    width: 94%;
+    display: block;
+    padding: 3%
+}
+p{
+    width: 100%;
 }
 
 #select_answer{
-  height: 44px;
+  height: 180px;
   border: none;
   overflow: hidden;
+  width:100%;
+  display:inline-flex;
+  background-color:gray
 }
 #select_answer::-moz-focus-inner {
   border: 0;
@@ -17,6 +26,7 @@ body{
   outline: none;
 }
 #select_answer option{
+  width:80%;
   font-size: 1.2em;
   padding: 10px 0;
   text-align: center;
@@ -26,4 +36,40 @@ body{
   border:rgb(204, 204, 0) solid 1px;
   border-radius: 5px;
   color: rgb(204, 204, 0);
+  margin: 3px auto
+}
+.submit-btn{
+    width:20%;
+    margin: 0 40%;
+}
+.hint-btn{
+    width:40%;
+    margin: 5px 30%;
+}
+.hints{
+    width:35%;
+    margin: 2.5%;
+}
+
+#hints{
+    border-radius:4px;
+    background-color:white;
+    padding:4px
+}
+
+form{
+    width:100%;
+}
+.hint-img{
+    width:40%;
+}
+.companion-img{
+    width:20%;
+}
+img{
+    width:100%;
+}
+.container{
+    width: 100%;
+    display:inline-flex;
 }

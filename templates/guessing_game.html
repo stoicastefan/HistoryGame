@@ -7,18 +7,31 @@
 {% endblock %}
 
 {% block body %}
-<div id="hints">
 
+<div class="container">
+    <div class="hint-img">
+        <img src="{{url_for('static', filename='images/sign_up.png')}}">
+    </div>
+    <div class="hints">
+        <div id="hints">
+        </div>
+        <input type="button" class="hint-btn" value="Another Hint" onclick="getAnotherHint();" align="center">
+        <form>
+            <select name="answer_select" id="select_answer" multiple>
+            {% for answer in  answers%}
+                <option value="{{answer[3:].strip()}}" >{{answer[3:]}}</option>
+            {% endfor %}
+            </select>
+            <input type="button" class="submit-btn" value="Submit Answer" onclick="submitAnswer();">
+        </form>
+    </div>
+    <div class="companion-img">
+        <img src="{{url_for('static', filename='images/companion.png')}}">
+    </div>
 </div>
-<input type="button" class="btn" value="Another Hint" onclick="getAnotherHint();" align="center">
-<form>
-    <select name="answer_select" id="select_answer" multiple>
-    {% for answer in  answers%}
-        <option value="{{answer[3:].strip()}}" >{{answer[3:]}}</option>
-    {% endfor %}
-    </select>
-    <input type="button" class="btn" value="Submit Answer" onclick="submitAnswer();" align="center">
-</form>
+
+
+
 <p id="demo"></p>
 
 <script>
