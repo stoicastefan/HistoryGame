@@ -68,10 +68,14 @@ def login():
 @app.route('/guessing_game')
 def guessing_game():
     openai_api = OpenaiApi()
-    answers = openai_api.get_a_list_of_answers("Give me 4 major events from prehistory.", 1, 1000)
+    answers = openai_api.get_a_list_of_answers(
+        "Give me 4 major events from ancient history without mentioning the period.",
+        1,
+        1000
+    )
     correct_answer = random.choice(answers)
     time.sleep(1)
-    hints = openai_api.get_a_list_of_answers(f"Give me 5 hints about {correct_answer}.", 1, 1000)
+    hints = openai_api.get_a_list_of_answers(f"Give me 5 hints about {correct_answer} without mentioning '{correct_answer}'.", 1, 1000)
 
     return render_template("guessing_game.html", answers=answers, correct_answer=correct_answer, hints=hints)
 
