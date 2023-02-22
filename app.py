@@ -73,7 +73,7 @@ def guessing_game():
         1,
         1000
     )
-    correct_answer = random.choice(answers)
+    correct_answer = random.choice(answers).strip()
     time.sleep(1)
     hints = openai_api.get_a_list_of_answers(f"Give me 5 hints about {correct_answer} without mentioning '{correct_answer}'.", 1, 1000)
 
@@ -83,8 +83,8 @@ def guessing_game():
 @app.route('/submit_guess/<string:user_answer>/<string:correct_answer>/<int:hints>', methods=['POST', 'GET'])
 def submit_guess(user_answer, correct_answer, hints):
     if user_answer == correct_answer:
-        return f"You won using {hints} hints!"
-    return "You lose"
+        return render_template('win.html', hints=hints)
+    return render_template('lose.html')
 
 @app.route('/selectTypeGame', methods=['POST', 'GET'])
 def select_type_game():
