@@ -1,36 +1,25 @@
-
-
 html, body {
     background-color: rgba(5, 10, 16, 1);
-
 }
-
 .grid-container {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   height: 100vh; /* Set the height of the grid container to the full viewport height */
-
 }
-
 .image {
   overflow: hidden; /* Hide any overflow from the image */
   border: 5px solid #330000;
-
 }
-
 img {
   width: 100%; /* Set the width of the image to 100% of its container */
   display: block; /* Remove any default margin or padding from the image */
 }
-
 .buttonPre {
   position: absolute;
   bottom: 20px; /* Adjust this value to change the distance of the button from the bottom of the page */
   left: 5%; /* Adjust this value to change the horizontal position of the button */
   z-index: 1;
   font-size: 20px; /* Adjust this value to change the size of the button */
-
-
 }
 .buttonAncient {
   position: absolute;
@@ -39,7 +28,6 @@ img {
   z-index: 1;
   font-size: 20px; /* Adjust this value to change the size of the button */
 }
-
 .buttonPCH {
   position: absolute;
   bottom: 20px; /* Adjust this value to change the distance of the button from the bottom of the page */
@@ -47,7 +35,6 @@ img {
   z-index: 1;
   font-size: 20px; /* Adjust this value to change the size of the button */
 }
-
 .buttonModern {
   position: absolute;
   bottom: 20px; /* Adjust this value to change the distance of the button from the bottom of the page */
@@ -55,7 +42,6 @@ img {
   z-index: 1;
   font-size: 20px; /* Adjust this value to change the size of the button */
 }
-
 button {
   background-color: #ddd;
   border: none;
@@ -70,7 +56,6 @@ button:hover {
   background-color: #4D5D53;
   color: white;
 }
-
 a {
 text-decoration: none;
 color: #000000
