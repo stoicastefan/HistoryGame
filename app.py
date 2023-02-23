@@ -86,6 +86,13 @@ def submit_guess(user_answer, correct_answer, hints):
         return f"You won using {hints} hints!"
     return "You lose"
 
+@app.route('/selectTypeGame', methods=['POST', 'GET'])
+def select_type_game():
+    return render_template('selectTypeGame.html')
+
+@app.route('/select_period', methods=['POST', 'GET'])
+def select_period():
+    return render_template('select_period.html')
 
 if __name__ == "__main__":
     app.run(debug=True)
