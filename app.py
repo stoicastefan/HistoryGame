@@ -34,19 +34,24 @@ def sign_up():
         email = request.form['email']
         password = request.form['password'].encode('utf-8')
         hashed_password = bcrypt.hashpw(password, bcrypt.gensalt())
-        exists = db.session.query(
+        username_exists = db.session.query(
             db.session.query(User).filter_by(username=username).exists()
         ).scalar()
+        email_exists = db.session.query(
+            db.session.query(User).filter_by(email=email).exists()
+        ).scalar()
 
-        if not exists:
-            new_user = User(username=username, password=hashed_password, email=email)
-            try:
-                db.session.add(new_user)
-                db.session.commit()
-                return redirect('/')
-            except():
-                return "error creating user"
-        return "username already used"
+        if not username_exists:
+            if not email_exists:
+                new_user = User(username=username, password=hashed_password, email=email)
+                try:
+                    db.session.add(new_user)
+                    db.session.commit()
+                    return redirect('/select_period')
+                except():
+                    return "error creating user"
+            return render_template('sign_up.html', error="Email already used.")
+        return render_template('sign_up.html', error="Username already used.")
     return render_template('sign_up.html')
 
 
@@ -59,9 +64,9 @@ def login():
 
         if user_db_row:
             if bcrypt.checkpw(password, user_db_row.password):
-                return f"Login successful as {user_db_row.username}"
-            return "Wrong password"
-        return "username not in db"
+                return redirect('/select_period')
+            return render_template('login.html', error="Wrong password!")
+        return render_template('login.html', error="Username not existing!")
     return render_template('login.html')
 
 
@@ -86,13 +91,16 @@ def submit_guess(user_answer, correct_answer, hints):
         return render_template('win.html', hints=hints)
     return render_template('lose.html')
 
+
 @app.route('/selectTypeGame', methods=['POST', 'GET'])
 def select_type_game():
     return render_template('selectTypeGame.html')
 
+
 @app.route('/select_period', methods=['POST', 'GET'])
 def select_period():
     return render_template('select_period.html')
+
 
 if __name__ == "__main__":
     app.run(debug=True)
