@@ -9,39 +9,45 @@
 {% endblock %}
 {% block body %}
 
-<button class="buttonPre" id="buttonPre">
-  <a href="/sign_up"  class="buttonPre-text">PREHISTORY</a>
-      <audio id="audioPre">
-      <source src="/static/css/sound.mp3" type="audio/mpeg">
-    </audio>
-</button>
-
-<button class="buttonAncient" id="buttonAncient">
-  <a href="/sign_up" class="buttonAncient-text">ANCIENT HISTORY</a>
-    <audio id="audioAncient">
-      <source src="/static/css/sound.mp3" type="audio/mpeg">
-    </audio>
-</button>
-
-<button class="buttonPCH" id="buttonPCH">
-  <a href="/sign_up"  class="buttonPCH-text">POST-CLASSICAL HISTORY</a>
-      <audio id="audioPCH">
-      <source src="/static/css/sound.mp3" type="audio/mpeg">
-    </audio>
-</button>
-
-<button class="buttonModern" id="buttonModern">
-  <a href="/sign_up" class="buttonModern-text">MODERN HISTORY</a>
-      <audio id="audioModern">
-      <source src="/static/css/sound.mp3" type="audio/mpeg">
-    </audio>
-</button>
-
 <div class="grid-container">
-  <a href="/sign_up" class="image"><img src="{{url_for('static', filename='images/resizeP0.jpg')}}"></a>
-  <a href="/sign_up" class="image"><img src="{{url_for('static', filename='images/resizeP2.0.jpg')}}"></a>
-  <a href="/sign_up" class="image"><img src="{{url_for('static', filename='images/resizeP3.0.jpg')}}"></a>
-  <a href="/sign_up" class="image"><img src="{{url_for('static', filename='images/resizeP4.1.jpg')}}"></a>
+  <a href="/sign_up" class="image">
+      <img src="{{url_for('static', filename='images/resizeP0.jpg')}}" >
+      <button id="buttonPre" class="buttonPre btn">
+          PREHISTORY
+          <audio id="audioPre">
+          <source src="/static/css/sound.mp3" type="audio/mpeg">
+        </audio>
+      </button>
+  </a>
+  <a href="/sign_up" class="image">
+      <img src="{{url_for('static', filename='images/resizeP2.0.jpg')}}">
+      <button id="buttonAncient" class="buttonAncient btn">
+          ANCIENT HISTORY
+          <audio id="audioAncient">
+          <source src="/static/css/sound.mp3" type="audio/mpeg">
+        </audio>
+      </button>
+  </a>
+  <a href="/sign_up" class="image">
+      <img src="{{url_for('static', filename='images/resizeP3.0.jpg')}}">
+      <button id="buttonPCH" class="buttonPCH btn">
+          POST-CLASSICAL HISTORY
+          <audio id="audioPCH">
+          <source src="/static/css/sound.mp3" type="audio/mpeg">
+        </audio>
+      </button>
+  </a>
+  <a href="/sign_up" class="image">
+      <img src="{{url_for('static', filename='images/resizeP4.1.jpg')}}">
+      <button id="buttonModern" class="buttonModern btn">
+          MODERN HISTORY
+          <audio id="audioModern">
+          <source src="/static/css/sound.mp3" type="audio/mpeg">
+        </audio>
+      </button>
+  </a>
+
+
 </div>
 
 <script>
@@ -59,7 +65,7 @@ buttonPre.addEventListener("click", function(event) {
   event.preventDefault();
   audioPre.play();
   audioPre.addEventListener("ended", function() {
-    window.location.href = buttonPre.querySelector("a").href;
+    window.location.assign("\sign_up")
   });
 });
 
@@ -67,7 +73,7 @@ buttonAncient.addEventListener("click", function(event) {
   event.preventDefault();
   audioAncient.play();
   audioAncient.addEventListener("ended", function() {
-    window.location.href = buttonAncient.querySelector("a").href;
+    window.location.assign("\sign_up")
   });
 });
 
@@ -75,7 +81,7 @@ buttonPCH.addEventListener("click", function(event) {
   event.preventDefault();
   audioPCH.play();
   audioPCH.addEventListener("ended", function() {
-    window.location.href = buttonPCH.querySelector("a").href;
+    window.location.assign("\sign_up")
   });
 });
 
@@ -83,7 +89,7 @@ buttonModern.addEventListener("click", function(event) {
   event.preventDefault();
   audioModern.play();
   audioModern.addEventListener("ended", function() {
-    window.location.href = buttonModern.querySelector("a").href;
+    window.location.assign("\sign_up")
   });
 });
 

@@ -9,49 +9,14 @@ html, body {
 .image {
   overflow: hidden; /* Hide any overflow from the image */
   border: 5px solid #330000;
+  position: relative;
 }
 img {
   width: 100%; /* Set the width of the image to 100% of its container */
   display: block; /* Remove any default margin or padding from the image */
 }
-.buttonPre {
-  position: absolute;
-  bottom: 20px; /* Adjust this value to change the distance of the button from the bottom of the page */
-  left: 5%; /* Adjust this value to change the horizontal position of the button */
-  z-index: 1;
-  font-size: 20px; /* Adjust this value to change the size of the button */
-}
-.buttonAncient {
-  position: absolute;
-  bottom: 20px; /* Adjust this value to change the distance of the button from the bottom of the page */
-  left: 29%; /* Adjust this value to change the horizontal position of the button */
-  z-index: 1;
-  font-size: 20px; /* Adjust this value to change the size of the button */
-}
-.buttonPCH {
-  position: absolute;
-  bottom: 20px; /* Adjust this value to change the distance of the button from the bottom of the page */
-  left: 50.7%; /* Adjust this value to change the horizontal position of the button */
-  z-index: 1;
-  font-size: 20px; /* Adjust this value to change the size of the button */
-}
-.buttonModern {
-  position: absolute;
-  bottom: 20px; /* Adjust this value to change the distance of the button from the bottom of the page */
-  left: 78%; /* Adjust this value to change the horizontal position of the button */
-  z-index: 1;
-  font-size: 20px; /* Adjust this value to change the size of the button */
-}
-button {
-  background-color: #ddd;
-  border: none;
-  color: black;
-  padding: 16px 32px;
-  text-align: center;
-  font-size: 16px;
-  margin: 4px 2px;
-  transition: 0.3s;
-}
+
+
 button:hover {
   background-color: #4D5D53;
   color: white;
@@ -59,4 +24,23 @@ button:hover {
 a {
 text-decoration: none;
 color: #000000
+}
+.btn {
+  cursor: pointer;
+  background-color: gray;
+  opacity: 0.5;
+  box-shadow: 0 6px 6px rgba(0, 0, 0, 0.6);
+  position: absolute;
+  top: 70%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  color: white;
+  font-size: 16px;
+  padding: 12px 24px;
+  border: 1px solid #3498db;
+  border-color:gray;
+  cursor: pointer;
+  border-radius: 5px;
+  z-index: 1;
 }
