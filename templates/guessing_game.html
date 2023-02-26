@@ -1,12 +1,12 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Guessing Game</title>
-    <link rel="stylesheet" href="{{url_for('static', filename='css/guessing_game.css')}}">
-</head>
-<body>
+{% extends 'base.html' %}
+{% block head %}
+<link rel="stylesheet" href="{{url_for('static', filename='css/guessing_game.css')}}">
+
+<title>Guessing Game</title>
+
+{% endblock %}
+
+{% block body %}
     <div class="container">
         <div class="companion-img">
             <img src="{{url_for('static', filename='images/companion.png')}}" alt="Companion Image">
@@ -72,5 +72,4 @@
             window.location.assign("/submit_guess/" + yourAnswer + "/" + correct_answer + "/" + index)
         }
     </script>
-</body>
-</html>
+{% endblock %}

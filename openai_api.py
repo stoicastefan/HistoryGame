@@ -6,7 +6,7 @@ class OpenaiApi:
         pass
 
     def request_answer_openai(self, prompt, temperature, tokens):
-        openai.api_key = "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"
+        openai.api_key = ""
         response = openai.Completion.create(
             engine="text-davinci-003",
             prompt=prompt,
