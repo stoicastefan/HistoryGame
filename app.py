@@ -77,7 +77,7 @@ def login():
 def guessing_game():
     openai_api = OpenaiApi()
     answers = openai_api.get_a_list_of_answers(
-        "Give me 4 major events from ancient history without mentioning the period.",
+        "Give me 4 major events from ancient history without mentioning the period of the event.",
         1,
         1000
     )
