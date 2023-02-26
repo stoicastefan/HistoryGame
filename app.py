@@ -1,3 +1,5 @@
+
+
 import random
 import time
 
@@ -64,9 +66,10 @@ def login():
 
         if user_db_row:
             if bcrypt.checkpw(password, user_db_row.password):
-                return redirect('/select_period')
+                return redirect('/select_period')       # TODO set user_db_row.username in cookies
             return render_template('login.html', error="Wrong password!")
         return render_template('login.html', error="Username not existing!")
+
     return render_template('login.html')
 
 
