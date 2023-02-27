@@ -130,7 +130,7 @@
         function submitAnswer(){
             var yourAnswer = document.getElementById("select_answer").value;
             var correct_answer = '{{correct_answer[3:]}}'
-            window.location.assign("/submit_guess/" + yourAnswer + "/" + correct_answer + "/" + index + "/" + {{period}})
+            window.location.assign("/submit_guess/" + yourAnswer + "/" + correct_answer + "/" + index + "/" + '{{period}}')
         }
     </script>
 {% endblock %}
