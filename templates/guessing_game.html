@@ -7,62 +7,102 @@
 {% endblock %}
 
 {% block body %}
+    <div class="container">
 
-<div class="container">
-    <div class="hint-img">
-        <img src="{{url_for('static', filename='images/sign_up.png')}}">
-    </div>
-    <div class="hints">
-        <div id="hints">
+        <div class="background"></div>
+        <div class="hint-img">
+            <div class="img-frame">
+                <img src="{{url_for('static', filename='images/sign_up.png')}}" alt="Sign Up Image">
+            </div>
         </div>
-        <input type="button" class="hint-btn" value="Another Hint" onclick="getAnotherHint();" align="center">
-        <form>
-            <select name="answer_select" id="select_answer" multiple>
-            {% for answer in  answers%}
-                <option value="{{answer[3:]}}" >{{answer[3:]}}</option>
-            {% endfor %}
-            </select>
-            <input type="button" class="submit-btn" value="Submit Answer" onclick="submitAnswer();">
-        </form>
+        <div class="hints">
+            <div class="hint-box">
+                    <a onclick="getAnotherHint();" class="button button--pen">
+                    <div class="button__wrapper">
+                        <span class="button__text">HINT</span>
+                    </div>
+                    <div class="characterBox">
+                        <div class="character wakeup">
+                            <div class="character__face"></div>
+                            <div class="charactor__face2"></div>
+                        </div>
+                        <div class="character wakeup">
+                            <div class="character__face"></div>
+                            <div class="charactor__face2"></div>
+                        </div>
+                        <div class="character">
+                            <div class="character__face"></div>
+                            <div class="charactor__face2"></div>
+                        </div>
+                    </div>
+                </a>
+            </div>
+            <form>
+                <select name="answer_select" id="select_answer" multiple>
+                    {% for answer in  answers%}
+                        <option style="white-space: pre-wrap;" value="{{answer[3:].strip()}}" >{{answer[3:]|safe}}</option>
+                    {% endfor %}
+                </select>
+                <a onclick="submitAnswer()" class="button button--hoo">
+                    <div class="button__wrapper">
+                        <span class="button__text">SUBMIT</span>
+                    </div>
+                    <div class="characterBox">
+                        <div class="character wakeup">
+                            <div class="character__face"></div>
+                            <div class="charactor__face2"></div>
+                            <div class="charactor__body"></div>
+                        </div>
+                        <div class="character wakeup">
+                            <div class="character__face"></div>
+                            <div class="charactor__face2"></div>
+                            <div class="charactor__body"></div>
+                        </div>
+                        <div class="character">
+                            <div class="character__face"></div>
+                            <div class="charactor__face2"></div>
+                            <div class="charactor__body"></div>
+                        </div>
+                    </div>
+                </a>
+            </form>
+            <div class="hint-content" id="hints">
+            </div>
+        </div>
+        <div class="companion-img">
+            <img src="{{url_for('static', filename='images/companion.png')}}" alt="Companion Image">
+        </div>
     </div>
-    <div class="companion-img">
-        <img src="{{url_for('static', filename='images/companion.png')}}">
-    </div>
-</div>
+    <p id="demo"></p>
+    <script>
+        var hints = [], index = 0;
 
+        {% for hint in hints %}
+        hints[index] = '{{hint | tojson | safe }}';
+        hints[index] = hints[index].replaceAll('"', '');
+        index += 1;
+        {% endfor %}
 
+        index = 0
 
-<p id="demo"></p>
+        document.getElementById("demo").innerHTML = '{{correct_answer[3:]}}'
 
-<script>
+         function getAnotherHint(){
+            if(index<5){
+                const newHint = document.createElement("p");
+                const newContent = document.createTextNode(hints[index]);
+                const element = document.getElementById("hints");
 
-var hints = [], index = 0;
+                newHint.appendChild(newContent);
+                element.appendChild(newHint);
+                index += 1;
+            }
+        }
 
-{% for hint in  hints%}
-    hints[index] = '{{hint}}';
-    index += 1;
-{% endfor %}
-
-index = 0
-
-document.getElementById("demo").innerHTML = '{{correct_answer[3:]}}'
-
-function getAnotherHint(){
-    const newHint = document.createElement("p");
-    const newContent = document.createTextNode(hints[index]);
-    const element = document.getElementById("hints");
-
-    newHint.appendChild(newContent);
-    element.appendChild(newHint);
-    index += 1;
-}
-
-function submitAnswer(){
-    var yourAnswer = document.getElementById("select_answer").value;
-    var correct_answer = '{{correct_answer[3:]}}'
-    window.location.assign("/submit_guess/" + yourAnswer + "/" + correct_answer + "/" + index)
-}
-</script>
-
+        function submitAnswer(){
+            var yourAnswer = document.getElementById("select_answer").value;
+            var correct_answer = '{{correct_answer[3:]}}'
+            window.location.assign("/submit_guess/" + yourAnswer + "/" + correct_answer + "/" + index)
+        }
+    </script>
 {% endblock %}
-

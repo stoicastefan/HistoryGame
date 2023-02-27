@@ -1,3 +1,5 @@
+
+
 import random
 import time
 
@@ -64,9 +66,10 @@ def login():
 
         if user_db_row:
             if bcrypt.checkpw(password, user_db_row.password):
-                return redirect('/select_period')
+                return redirect('/select_period')       # TODO set user_db_row.username in cookies
             return render_template('login.html', error="Wrong password!")
         return render_template('login.html', error="Username not existing!")
+
     return render_template('login.html')
 
 
@@ -74,14 +77,13 @@ def login():
 def guessing_game():
     openai_api = OpenaiApi()
     answers = openai_api.get_a_list_of_answers(
-        "Give me 4 major events from ancient history without mentioning the period.",
+        "Give me 4 major events from ancient history without mentioning the period of the event.",
         1,
         1000
     )
     correct_answer = random.choice(answers).strip()
     time.sleep(1)
-    hints = openai_api.get_a_list_of_answers(f"Give me 5 hints about {correct_answer} without mentioning '{correct_answer}'.", 1, 1000)
-
+    hints = openai_api.get_a_list_of_answers(f"Give me 5 hints about {correct_answer} without mentioning '{correct_answer}'.", 0, 1000)
     return render_template("guessing_game.html", answers=answers, correct_answer=correct_answer, hints=hints)
 
 
