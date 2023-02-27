@@ -83,8 +83,7 @@ def guessing_game():
     )
     correct_answer = random.choice(answers).strip()
     time.sleep(1)
-    hints = openai_api.get_a_list_of_answers(f"Give me 5 hints about {correct_answer} without mentioning '{correct_answer}'.", 1, 1000)
-
+    hints = openai_api.get_a_list_of_answers(f"Give me 5 hints about {correct_answer} without mentioning '{correct_answer}'.", 0, 1000)
     return render_template("guessing_game.html", answers=answers, correct_answer=correct_answer, hints=hints)
 
 

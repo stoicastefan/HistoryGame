@@ -40,7 +40,7 @@
             <form>
                 <select name="answer_select" id="select_answer" multiple>
                     {% for answer in  answers%}
-                        <option style="white-space: pre-wrap;" value="{{answer[3:]}}" >{{answer[3:]}}</option>
+                        <option style="white-space: pre-wrap;" value="{{answer[3:].strip()}}" >{{answer[3:]|safe}}</option>
                     {% endfor %}
                 </select>
                 <a onclick="submitAnswer()" class="button button--hoo">
@@ -78,7 +78,8 @@
         var hints = [], index = 0;
 
         {% for hint in hints %}
-        hints[index] = '{{hint}}';
+        hints[index] = '{{hint | tojson | safe }}';
+        hints[index] = hints[index].replaceAll('"', '');
         index += 1;
         {% endfor %}
 
@@ -87,13 +88,15 @@
         document.getElementById("demo").innerHTML = '{{correct_answer[3:]}}'
 
          function getAnotherHint(){
-            const newHint = document.createElement("p");
-            const newContent = document.createTextNode(hints[index]);
-            const element = document.getElementById("hints");
+            if(index<5){
+                const newHint = document.createElement("p");
+                const newContent = document.createTextNode(hints[index]);
+                const element = document.getElementById("hints");
 
-            newHint.appendChild(newContent);
-            element.appendChild(newHint);
-            index += 1;
+                newHint.appendChild(newContent);
+                element.appendChild(newHint);
+                index += 1;
+            }
         }
 
         function submitAnswer(){
