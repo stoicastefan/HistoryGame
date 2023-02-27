@@ -70,7 +70,35 @@
             </div>
         </div>
         <div class="companion-img">
+            {% if period == "prehistory" %}
             <img src="{{url_for('static', filename='images/companion.png')}}" alt="Companion Image">
+            <style>
+                .background{
+                    background-image: url("{{url_for('static', filename='images/modern_history.jpg')}}");
+                }
+            </style>
+            {% elif period == "ancient history" %}
+            <img src="{{url_for('static', filename='images/companion.png')}}" alt="Companion Image">
+            <style>
+                .background{
+                    background-image: url("{{url_for('static', filename='images/modern_history.jpg')}}");
+                }
+            </style>
+            {% elif period == "post-classical history" %}
+            <img src="{{url_for('static', filename='images/papa.jpg')}}" alt="Companion Image">
+            <style>
+                .background{
+                    background-image: url("{{url_for('static', filename='images/post-classical.jpg')}}");
+                }
+            </style>
+            {% elif period == "modern history" %}
+            <img src="{{url_for('static', filename='images/tom hardy.png')}}" alt="Companion Image">
+            <style>
+                .background{
+                    background-image: url("{{url_for('static', filename='images/modern_history.jpg')}}");
+                }
+            </style>
+            {% endif %}
         </div>
     </div>
     <p id="demo"></p>
@@ -102,7 +130,7 @@
         function submitAnswer(){
             var yourAnswer = document.getElementById("select_answer").value;
             var correct_answer = '{{correct_answer[3:]}}'
-            window.location.assign("/submit_guess/" + yourAnswer + "/" + correct_answer + "/" + index)
+            window.location.assign("/submit_guess/" + yourAnswer + "/" + correct_answer + "/" + index + "/" + {{period}})
         }
     </script>
 {% endblock %}
