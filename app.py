@@ -73,35 +73,52 @@ def login():
     return render_template('login.html')
 
 
-@app.route('/guessing_game')
-def guessing_game():
+@app.route('/guessing_game/<string:period>')
+def guessing_game(period):
     openai_api = OpenaiApi()
     answers = openai_api.get_a_list_of_answers(
-        "Give me 4 major events from ancient history without mentioning the period of the event.",
+        f"Give me 4 major events from {period} without mentioning the period of the event.",
         1,
         1000
     )
     correct_answer = random.choice(answers).strip()
+    img_link = openai_api.generate_dall_e_image(f"{correct_answer} sand sculpture, high detail")
     time.sleep(1)
-    hints = openai_api.get_a_list_of_answers(f"Give me 5 hints about {correct_answer} without mentioning '{correct_answer}'.", 0, 1000)
-    return render_template("guessing_game.html", answers=answers, correct_answer=correct_answer, hints=hints)
+    hints = openai_api.get_a_list_of_answers(
+        f"Give me 5 hints about {correct_answer} without mentioning '{correct_answer}'.",
+        0,
+        1000
+    )
+    return render_template(
+        "guessing_game.html",
+        answers=answers,
+        correct_answer=correct_answer,
+        hints=hints,
+        period=period,
+        img_link=img_link
+    )
 
 
-@app.route('/submit_guess/<string:user_answer>/<string:correct_answer>/<int:hints>', methods=['POST', 'GET'])
-def submit_guess(user_answer, correct_answer, hints):
+@app.route('/submit_guess/<string:user_answer>/<string:correct_answer>/<int:hints>/<string:period>')
+def submit_guess(user_answer, correct_answer, hints, period):
     if user_answer == correct_answer:
-        return render_template('win.html', hints=hints)
-    return render_template('lose.html')
+        return render_template('win.html', hints=hints, period=period)
+    return render_template('lose.html', period=period)
 
 
-@app.route('/selectTypeGame', methods=['POST', 'GET'])
+@app.route('/selectTypeGame')
 def select_type_game():
     return render_template('selectTypeGame.html')
 
 
-@app.route('/select_period', methods=['POST', 'GET'])
+@app.route('/select_period')
 def select_period():
     return render_template('select_period.html')
+
+
+@app.route('/')
+def index():
+    return redirect('/login')
 
 
 if __name__ == "__main__":

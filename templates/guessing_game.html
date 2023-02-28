@@ -12,7 +12,7 @@
         <div class="background"></div>
         <div class="hint-img">
             <div class="img-frame">
-                <img src="{{url_for('static', filename='images/sign_up.png')}}" alt="Sign Up Image">
+                <img src="{{img_link}}" alt="Sign Up Image">
             </div>
         </div>
         <div class="hints">
@@ -70,7 +70,35 @@
             </div>
         </div>
         <div class="companion-img">
+            {% if period == "prehistory" %}
+            <img src="{{url_for('static', filename='images/neanderthal.png')}}" alt="Companion Image">
+            <style>
+                .background{
+                    background-image: url("{{url_for('static', filename='images/prehistory.jpg')}}");
+                }
+            </style>
+            {% elif period == "ancient history" %}
+            <img src="{{url_for('static', filename='images/cleopatra.png')}}" alt="Companion Image">
+            <style>
+                .background{
+                    background-image: url("{{url_for('static', filename='images/ancient-history.jpg')}}");
+                }
+            </style>
+            {% elif period == "post-classical history" %}
+            <img src="{{url_for('static', filename='images/genghis_khan.png')}}" alt="Companion Image">
+            <style>
+                .background{
+                    background-image: url("{{url_for('static', filename='images/post-classical.jpg')}}");
+                }
+            </style>
+            {% elif period == "modern history" %}
             <img src="{{url_for('static', filename='images/companion.png')}}" alt="Companion Image">
+            <style>
+                .background{
+                    background-image: url("{{url_for('static', filename='images/modern_history.jpg')}}");
+                }
+            </style>
+            {% endif %}
         </div>
     </div>
     <p id="demo"></p>
@@ -102,7 +130,7 @@
         function submitAnswer(){
             var yourAnswer = document.getElementById("select_answer").value;
             var correct_answer = '{{correct_answer[3:]}}'
-            window.location.assign("/submit_guess/" + yourAnswer + "/" + correct_answer + "/" + index)
+            window.location.assign("/submit_guess/" + yourAnswer + "/" + correct_answer + "/" + index + "/" + '{{period}}')
         }
     </script>
 {% endblock %}

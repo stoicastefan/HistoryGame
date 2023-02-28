@@ -10,7 +10,7 @@
 {% block body %}
 
 <div class="grid-container">
-  <a href="/sign_up" class="image">
+  <a href="/guessing_game/prehistory" class="image">
       <img src="{{url_for('static', filename='images/resizeP0.jpg')}}" >
       <button id="buttonPre" class="buttonPre btn">
           PREHISTORY
@@ -19,7 +19,7 @@
         </audio>
       </button>
   </a>
-  <a href="/sign_up" class="image">
+  <a href="/guessing_game/ancient history" class="image">
       <img src="{{url_for('static', filename='images/resizeP2.0.jpg')}}">
       <button id="buttonAncient" class="buttonAncient btn">
           ANCIENT HISTORY
@@ -28,7 +28,7 @@
         </audio>
       </button>
   </a>
-  <a href="/sign_up" class="image">
+  <a href="/guessing_game/post-classical history" class="image">
       <img src="{{url_for('static', filename='images/resizeP3.0.jpg')}}">
       <button id="buttonPCH" class="buttonPCH btn">
           POST-CLASSICAL HISTORY
@@ -37,7 +37,7 @@
         </audio>
       </button>
   </a>
-  <a href="/sign_up" class="image">
+  <a href="/guessing_game/modern history" class="image">
       <img src="{{url_for('static', filename='images/resizeP4.1.jpg')}}">
       <button id="buttonModern" class="buttonModern btn">
           MODERN HISTORY
@@ -63,7 +63,7 @@ buttonPre.addEventListener("click", function(event) {
   event.preventDefault();
   audioPre.play();
   audioPre.addEventListener("ended", function() {
-    window.location.assign("\sign_up")
+    window.location.assign("/sign_up/prehistory")
   });
 });
 
@@ -71,7 +71,7 @@ buttonAncient.addEventListener("click", function(event) {
   event.preventDefault();
   audioAncient.play();
   audioAncient.addEventListener("ended", function() {
-    window.location.assign("\sign_up")
+    window.location.assign("/guessing_game/ancient history")
   });
 });
 
@@ -79,7 +79,7 @@ buttonPCH.addEventListener("click", function(event) {
   event.preventDefault();
   audioPCH.play();
   audioPCH.addEventListener("ended", function() {
-    window.location.assign("\sign_up")
+    window.location.assign("/guessing_game/post-classical history")
   });
 });
 
@@ -87,7 +87,7 @@ buttonModern.addEventListener("click", function(event) {
   event.preventDefault();
   audioModern.play();
   audioModern.addEventListener("ended", function() {
-    window.location.assign("\sign_up")
+    window.location.assign("/guessing_game/modern history")
   });
 });
 
