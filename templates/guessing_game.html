@@ -101,12 +101,11 @@
             {% endif %}
         </div>
     </div>
-    <p id="demo"></p>
     <script>
         var hints = [], index = 0;
 
         {% for hint in hints %}
-        hints[index] = '{{hint | tojson | safe }}';
+        hints[index] = '{{hint[3:] | tojson | safe }}';
         hints[index] = hints[index].replaceAll('"', '');
         index += 1;
         {% endfor %}
@@ -129,7 +128,7 @@
 
         function submitAnswer(){
             var yourAnswer = document.getElementById("select_answer").value;
-            var correct_answer = '{{correct_answer[3:]}}'
+            var correct_answer = "{{correct_answer[3:] | safe}}"
             window.location.assign("/submit_guess/" + yourAnswer + "/" + correct_answer + "/" + index + "/" + '{{period}}')
         }
     </script>

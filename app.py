@@ -86,9 +86,10 @@ def guessing_game(period):
     time.sleep(1)
     hints = openai_api.get_a_list_of_answers(
         f"Give me 5 hints about {correct_answer} without mentioning '{correct_answer}'.",
-        0,
+        0.7,
         1000
     )
+    hints.reverse()
     return render_template(
         "guessing_game.html",
         answers=answers,

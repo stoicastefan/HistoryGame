@@ -52,6 +52,3 @@ class OpenaiApi:
         except Exception as e:
             print(f"Error generating DALL-E image: {e}")
             return None
-
-
-

@@ -31,7 +31,7 @@ color: #000000
   opacity: 0.5;
   box-shadow: 0 6px 6px rgba(0, 0, 0, 0.6);
   position: absolute;
-  top: 70%;
+  top: 90%;
   left: 50%;
   transform: translate(-50%, -50%);
   -ms-transform: translate(-50%, -50%);

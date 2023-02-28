@@ -83,6 +83,7 @@ select option:checked {
     font-size: 18px;
     border-radius:10px;
     background-color: #28282C;
+    opacity: 0.9;
 }
 form{
     width:100%;
