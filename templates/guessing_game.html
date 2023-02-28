@@ -12,7 +12,7 @@
         <div class="background"></div>
         <div class="hint-img">
             <div class="img-frame">
-                <img src="{{url_for('static', filename='images/sign_up.png')}}" alt="Sign Up Image">
+                <img src="{{img_link}}" alt="Sign Up Image">
             </div>
         </div>
         <div class="hints">
@@ -71,28 +71,28 @@
         </div>
         <div class="companion-img">
             {% if period == "prehistory" %}
-            <img src="{{url_for('static', filename='images/companion.png')}}" alt="Companion Image">
+            <img src="{{url_for('static', filename='images/neanderthal.png')}}" alt="Companion Image">
             <style>
                 .background{
-                    background-image: url("{{url_for('static', filename='images/modern_history.jpg')}}");
+                    background-image: url("{{url_for('static', filename='images/prehistory.jpg')}}");
                 }
             </style>
             {% elif period == "ancient history" %}
-            <img src="{{url_for('static', filename='images/companion.png')}}" alt="Companion Image">
+            <img src="{{url_for('static', filename='images/cleopatra.png')}}" alt="Companion Image">
             <style>
                 .background{
-                    background-image: url("{{url_for('static', filename='images/modern_history.jpg')}}");
+                    background-image: url("{{url_for('static', filename='images/ancient-history.jpg')}}");
                 }
             </style>
             {% elif period == "post-classical history" %}
-            <img src="{{url_for('static', filename='images/papa.jpg')}}" alt="Companion Image">
+            <img src="{{url_for('static', filename='images/augustus.png')}}" alt="Companion Image">
             <style>
                 .background{
                     background-image: url("{{url_for('static', filename='images/post-classical.jpg')}}");
                 }
             </style>
             {% elif period == "modern history" %}
-            <img src="{{url_for('static', filename='images/tom hardy.png')}}" alt="Companion Image">
+            <img src="{{url_for('static', filename='images/companion.png')}}" alt="Companion Image">
             <style>
                 .background{
                     background-image: url("{{url_for('static', filename='images/modern_history.jpg')}}");
