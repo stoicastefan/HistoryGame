@@ -49,7 +49,7 @@ def sign_up():
                     db.session.commit()
                     return redirect('/select_period')
                 except():
-                    return "error creating user"
+                    return render_template('sign_up.html', error="error creating user")
             return render_template('sign_up.html', error="Email already used.")
         return render_template('sign_up.html', error="Username already used.")
     return render_template('sign_up.html')
