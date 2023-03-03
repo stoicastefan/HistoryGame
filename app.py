@@ -1,9 +1,7 @@
-
-
-import random
-import time
-
 import bcrypt
+import time
+import random
+import re
 
 
 from datetime import datetime
@@ -66,11 +64,21 @@ def login():
 
         if user_db_row:
             if bcrypt.checkpw(password, user_db_row.password):
-                return redirect('/select_period')       # TODO set user_db_row.username in cookies
+                return redirect('/select_period')
             return render_template('login.html', error="Wrong password!")
         return render_template('login.html', error="Username not existing!")
 
     return render_template('login.html')
+
+
+@app.route('/')
+def index():
+    return redirect('/login')
+
+
+@app.route('/select_period')
+def select_period():
+    return render_template('select_period.html')
 
 
 @app.route('/guessing_game/<string:period>')
@@ -81,6 +89,7 @@ def guessing_game(period):
         1,
         1000
     )
+    answers = [remove_parentheses(answer) for answer in answers]
     correct_answer = random.choice(answers).strip()
     img_link = openai_api.generate_dall_e_image(f"{correct_answer} sand sculpture, high detail")
     time.sleep(1)
@@ -107,19 +116,8 @@ def submit_guess(user_answer, correct_answer, hints, period):
     return render_template('lose.html', period=period)
 
 
-@app.route('/selectTypeGame')
-def select_type_game():
-    return render_template('selectTypeGame.html')
-
-
-@app.route('/select_period')
-def select_period():
-    return render_template('select_period.html')
-
-
-@app.route('/')
-def index():
-    return redirect('/login')
+def remove_parentheses(string):
+    return re.sub(r'\([^)]*\)', '', string)
 
 
 if __name__ == "__main__":

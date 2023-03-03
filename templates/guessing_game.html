@@ -105,9 +105,9 @@
         var hints = [], index = 0;
 
         {% for hint in hints %}
-        hints[index] = '{{hint[3:] | tojson | safe }}';
-        hints[index] = hints[index].replaceAll('"', '');
-        index += 1;
+            hints[index] = '{{hint[3:] | tojson | safe }}';
+            hints[index] = hints[index].replaceAll('"', '');
+            index += 1;
         {% endfor %}
 
         index = 0
