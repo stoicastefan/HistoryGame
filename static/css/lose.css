@@ -34,3 +34,7 @@ button:hover {
     color: #d90429;
     border: 2px solid #d90429;
 }
+
+.menu{
+    background-color: grey;
+}

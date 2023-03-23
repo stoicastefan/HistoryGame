@@ -5,6 +5,7 @@ html, body {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   height: 100vh; /* Set the height of the grid container to the full viewport height */
+  width: 100vw;
 }
 .image {
   overflow: hidden; /* Hide any overflow from the image */

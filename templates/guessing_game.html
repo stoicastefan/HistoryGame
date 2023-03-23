@@ -38,7 +38,7 @@
                 </a>
             </div>
             <form>
-                <select name="answer_select" id="select_answer" multiple>
+                <select name="answer_select" id="select_answer" multiple required>
                     {% for answer in  answers%}
                         <option style="white-space: pre-wrap;" value="{{answer[3:].strip()}}" >{{answer[3:]|safe}}</option>
                     {% endfor %}
@@ -129,8 +129,10 @@
 
         function submitAnswer(){
             var yourAnswer = document.getElementById("select_answer").value;
-            var correct_answer = '{{correct_answer[3:]}}'
-            window.location.assign("/submit_guess/" + yourAnswer + "/" + correct_answer + "/" + index + "/" + '{{period}}')
+            if (yourAnswer != "") {
+                var correct_answer = '{{correct_answer[3:]}}'
+                window.location.assign("/submit_guess/" + yourAnswer + "/" + correct_answer + "/" + index + "/" + '{{period}}')
+            }
         }
     </script>
 {% endblock %}
