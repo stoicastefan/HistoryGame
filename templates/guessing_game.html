@@ -38,7 +38,7 @@
                 </a>
             </div>
             <form>
-                <select name="answer_select" id="select_answer" multiple>
+                <select name="answer_select" id="select_answer" multiple required>
                     {% for answer in  answers%}
                         <option style="white-space: pre-wrap;" value="{{answer[3:].strip()}}" >{{answer[3:]|safe}}</option>
                     {% endfor %}
